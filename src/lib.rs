@@ -14,8 +14,9 @@ pub struct QuadKeyParseError;
 /// # Examples
 ///
 /// ```
-/// let qk = tile_to_u64(29, 50, 7)
-/// // 0b0010110101100100000000000000000000000000000000000000000000000111
+/// use quadkey;
+/// let qk = quadkey::tile_to_u64(29, 50, 7);
+/// assert_eq!(qk, 0b0010110101100100000000000000000000000000000000000000000000000111);
 /// ```
 ///
 pub fn tile_to_u64(x: usize, y: usize, zoom: usize) -> u64 {
@@ -43,8 +44,9 @@ pub fn tile_to_u64(x: usize, y: usize, zoom: usize) -> u64 {
 /// # Examples
 ///
 /// ```
-/// let tile = u64_to_tile(0b0010110101100100000000000000000000000000000000000000000000000111)
-/// // Tile { x: 29, y: 50, z: 7 }
+/// use quadkey;
+/// let tile = quadkey::u64_to_tile(0b0010110101100100000000000000000000000000000000000000000000000111);
+/// assert_eq!(tile, quadkey::Tile { x: 29, y: 50, z: 7 });
 /// ```
 ///
 pub fn u64_to_tile(qk: u64) -> Tile {
@@ -73,8 +75,9 @@ pub fn u64_to_tile(qk: u64) -> Tile {
 /// # Examples
 ///
 /// ```
-/// let zoom = u64_zoom_level(0b0010110101100100000000000000000000000000000000000000000000000111)
-/// // 7
+/// use quadkey;
+/// let zoom = quadkey::u64_zoom_level(0b0010110101100100000000000000000000000000000000000000000000000111);
+/// assert_eq!(zoom,7);
 /// ```
 ///
 #[inline]
@@ -87,8 +90,9 @@ pub fn u64_zoom_level(bin_qk: u64) -> u64 {
 /// # Examples
 ///
 /// ```
-/// let qk = tile_to_str(11, 3, 8)
-/// // "00001033"
+/// use quadkey;
+/// let qk = quadkey::tile_to_str(11, 3, 8);
+/// assert_eq!(qk, String::from("00001033"));
 /// ```
 ///
 pub fn tile_to_str(x: usize, y: usize, z: usize) -> String {
@@ -117,8 +121,9 @@ pub fn tile_to_str(x: usize, y: usize, z: usize) -> String {
 /// # Examples
 ///
 /// ```
-/// let tile = str_to_tile("00001033")
-/// // Tile { x:11, y:3, z:8 }
+/// use quadkey;
+/// let tile = quadkey::str_to_tile(String::from("00001033")).unwrap();
+/// assert_eq!(tile, quadkey::Tile { x:11, y:3, z:8 });
 /// ```
 ///
 pub fn str_to_tile(qk: String) -> Result<Tile, QuadKeyParseError> {
