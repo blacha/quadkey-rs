@@ -1,4 +1,4 @@
-mod qk {
+// pub mod qk {
     const CHAR_CODE_ZERO: usize = 48;
 
     #[derive(Debug, PartialEq)]
@@ -103,55 +103,55 @@ mod qk {
 
         return Ok(Tile { x, y, z });
     }
-}
+// }
 
 #[cfg(test)]
 mod tests {
     #[test]
     fn it_converts_tile_to_string() {
-        assert_eq!(crate::qk::tile_to_str(0, 0, 0), "");
-        assert_eq!(crate::qk::tile_to_str(1, 1, 1), "3");
-        assert_eq!(crate::qk::tile_to_str(11, 3, 8), "00001033");
+        assert_eq!(crate::tile_to_str(0, 0, 0), "");
+        assert_eq!(crate::tile_to_str(1, 1, 1), "3");
+        assert_eq!(crate::tile_to_str(11, 3, 8), "00001033");
     }
 
     #[test]
     fn it_converts_from_string() {
         assert_eq!(
-            crate::qk::str_to_tile(String::from("00001033")).unwrap(),
-            crate::qk::Tile { x: 11, y: 3, z: 8 }
+            crate::str_to_tile(String::from("00001033")).unwrap(),
+            crate::Tile { x: 11, y: 3, z: 8 }
         );
     }
 
     #[test]
     fn it_round_trips_from_string() {
-        let tile = crate::qk::Tile { x: 11, y: 3, z: 8 };
-        let tile_qk = crate::qk::tile_to_str(tile.x, tile.y, tile.z);
-        assert_eq!(crate::qk::str_to_tile(tile_qk).unwrap(), tile);
+        let tile = crate::Tile { x: 11, y: 3, z: 8 };
+        let tile_qk = crate::tile_to_str(tile.x, tile.y, tile.z);
+        assert_eq!(crate::str_to_tile(tile_qk).unwrap(), tile);
     }
 
     #[test]
     fn it_get_binary_zoom_level() {
-        assert_eq!(crate::qk::u64_zoom_level(1), 1);
-        assert_eq!(crate::qk::u64_zoom_level(2), 2);
-        assert_eq!(crate::qk::u64_zoom_level(4), 4);
-        assert_eq!(crate::qk::u64_zoom_level(7), 7);
-        assert_eq!(crate::qk::u64_zoom_level(8), 8);
-        assert_eq!(crate::qk::u64_zoom_level(24), 24);
-        assert_eq!(crate::qk::u64_zoom_level(20024), 24);
+        assert_eq!(crate::u64_zoom_level(1), 1);
+        assert_eq!(crate::u64_zoom_level(2), 2);
+        assert_eq!(crate::u64_zoom_level(4), 4);
+        assert_eq!(crate::u64_zoom_level(7), 7);
+        assert_eq!(crate::u64_zoom_level(8), 8);
+        assert_eq!(crate::u64_zoom_level(24), 24);
+        assert_eq!(crate::u64_zoom_level(20024), 24);
     }
 
     #[test]
     fn it_converts_tile_to_u64() {
         assert_eq!(
-            crate::qk::tile_to_u64(1, 1, 1),
+            crate::tile_to_u64(1, 1, 1),
             0b1100000000000000000000000000000000000000000000000000000000000001
         );
         assert_eq!(
-            crate::qk::tile_to_u64(29, 50, 7),
+            crate::tile_to_u64(29, 50, 7),
             0b0010110101100100000000000000000000000000000000000000000000000111
         );
         assert_eq!(
-            crate::qk::tile_to_u64(35210, 21493, 16),
+            crate::tile_to_u64(35210, 21493, 16),
             0b110001001001011111010100110011000000000000000000000000000010000
         );
     }
@@ -159,22 +159,22 @@ mod tests {
     #[test]
     fn it_converts_from_u64() {
         assert_eq!(
-            crate::qk::u64_to_tile(
+            crate::u64_to_tile(
                 0b1100000000000000000000000000000000000000000000000000000000000001
             ),
-            crate::qk::Tile { x: 1, y: 1, z: 1 }
+            crate::Tile { x: 1, y: 1, z: 1 }
         );
         assert_eq!(
-            crate::qk::u64_to_tile(
+            crate::u64_to_tile(
                 0b0010110101100100000000000000000000000000000000000000000000000111
             ),
-            crate::qk::Tile { x: 29, y: 50, z: 7 }
+            crate::Tile { x: 29, y: 50, z: 7 }
         );
         assert_eq!(
-            crate::qk::u64_to_tile(
+            crate::u64_to_tile(
                 0b110001001001011111010100110011000000000000000000000000000010000
             ),
-            crate::qk::Tile {
+            crate::Tile {
                 x: 35210,
                 y: 21493,
                 z: 16
