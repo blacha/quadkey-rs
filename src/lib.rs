@@ -1,4 +1,3 @@
-// pub mod qk {
 const CHAR_CODE_ZERO: usize = 48;
 
 #[derive(Debug, PartialEq)]
@@ -103,7 +102,6 @@ pub fn str_to_tile(qk: String) -> Result<Tile, QuadKeyParseError> {
 
     return Ok(Tile { x, y, z });
 }
-// }
 
 #[cfg(test)]
 mod tests {
